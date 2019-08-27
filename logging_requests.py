@@ -4,7 +4,7 @@ def ratelimit(t=0.5):
     time.sleep(t) # sleep one second.
 
 class Connector():
-  def __init__(self,logfile,overwrite_log=False,connector_type='requests',session=False,path2selenium='',n_tries = 5,timeout=30,wait_time=0.5):
+  def __init__(self,logfile,connector_type='requests',session=False,path2selenium='',n_tries = 5,timeout=30,wait_time=0.5):
     """This Class implements a method for reliable connection to the internet and monitoring. 
     It handles simple errors due to connection problems, and logs a range of information for basic quality assessments
     
