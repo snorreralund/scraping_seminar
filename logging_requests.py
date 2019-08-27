@@ -41,11 +41,7 @@ class Connector():
     ## define header for the logfile
     header = ['id','project','connector_type','t', 'delta_t', 'url', 'redirect_url','response_size', 'response_code','success','error']
     if os.path.isfile(logfile):        
-      if overwrite_log==True:
-        self.log = open(logfile,'w')
-        self.log.write(';'.join(header))
-      else:
-        self.log = open(logfile,'a')
+      self.log = open(logfile,'a')
     else:
       self.log = open(logfile,'w')
       self.log.write(';'.join(header))
