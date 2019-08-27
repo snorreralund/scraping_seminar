@@ -70,7 +70,7 @@ class Connector():
     project_name = project_name.replace(';','-') # make sure the default csv seperator is not in the project_name.
     if self.connector_type=='requests': # Determine connector method.
       for _ in range(self.n_tries): # for loop defining number of retries with the requests method.
-        ratelimit(wait_time)
+        ratelimit(self.wait_time)
         t = time.time()
         try: # error handling 
           if type(call)==dict:
@@ -110,7 +110,7 @@ class Connector():
           self.log.flush()
     else:
       t = time.time()
-      ratelimit(wait_time)
+      ratelimit(self.wait_time)
       self.browser.get(url) # use selenium get method
       ## log
       call_id = self.id # define unique identifier for the call. 
