@@ -59,7 +59,7 @@ class Connector():
       else:
         self.id = int(l[-1][0])+1
             
-  def get(self,url,project_name):
+  def get(self,call,project_name):
     """Method for connector reliably to the internet, with multiple tries and simple error handling, as well as default logging function.
     Input url and the project name for the log (i.e. is it part of mapping the domain, or is it the part of the final stage in the data collection).
     
@@ -75,10 +75,12 @@ class Connector():
         t = time.time()
         try: # error handling 
           if type(call)==dict:
-            response = self.session.post(**call,timeout = self.timeout) # make get call
+            call['timeout'] = self.timeout
+            response = self.session.get(**call) # make get call
+            url = call['url']
           else:
-            response = self.session.post(call,timeout = self.timeout) # make get call
-          
+            response = self.session.get(call,timeout = self.timeout) # make get call
+            url = call
           err = '' # define python error variable as empty assumming success.
           success = True # define success variable
           redirect_url = response.url # log current url, after potential redirects 
@@ -96,6 +98,7 @@ class Connector():
 
         except Exception as e: # define error condition
           err = str(e) # python error
+          print(err)
           response_code = '' # blank response code 
           success = False # call success = False
           size = 0 # content is empty.
@@ -144,8 +147,11 @@ class Connector():
         t = time.time()
         try: # error handling 
           if type(call)==dict:
-            response = self.session.post(**call,timeout = self.timeout) # make get call
+            call['timeout'] = self.timeout
+            response = self.session.post(**call) # make get call
+            url = call['url']
           else:
+            url = call
             response = self.session.post(call,timeout = self.timeout) # make get call
 
           err = '' # define python error variable as empty assumming success.
