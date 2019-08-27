@@ -21,6 +21,7 @@ class Connector():
     ## Initialization function defining parameters. 
     self.n_tries = n_tries # For avoiding triviel error e.g. connection errors, this defines how many times it will retry.
     self.timeout = timeout # Defining the maximum time to wait for a server to response.
+    self.wait_time = wait_time
     ## not implemented here, if you use selenium.
     if connector_type=='selenium':
       assert path2selenium!='', "You need to specify the path to you geckodriver if you want to use Selenium"
