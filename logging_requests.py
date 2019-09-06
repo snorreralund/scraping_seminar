@@ -46,7 +46,7 @@ class Connector():
       self.log = open(logfile,'w')
       self.log.write(';'.join(header))
     ## load log
-    
+
     with open(logfile,'r') as f: # open file
 
       l = f.read().split('\n') # read and split file by newlines.
@@ -54,7 +54,7 @@ class Connector():
       if len(l)<=1:
         self.id = 0
       else:
-        ids = [int(i.split(';')[0]) for i in l]
+        ids = [int(i.split(';')[0]) for i in l[1:]]
         self.id = max(ids)+1
 
   def get(self,call,project_name):
