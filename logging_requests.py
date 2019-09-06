@@ -46,7 +46,7 @@ class Connector():
       self.log = open(logfile,'w')
       self.log.write(';'.join(header))
     ## load log
-    log_df = pd.read_csv()
+    
     with open(logfile,'r') as f: # open file
 
       l = f.read().split('\n') # read and split file by newlines.
