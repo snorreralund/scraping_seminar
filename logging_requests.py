@@ -83,7 +83,11 @@ class Connector():
           success = True # define success variable
           redirect_url = response.url # log current url, after potential redirects
           dt = t - time.time() # define delta-time waiting for the server and downloading content.
-          size = len(response.text) # define variable for size of html content of the response.
+          try:
+            size = len(response.text) # define variable for size of html content of the response.
+          except Exception as e:
+            print(e)
+            size = len(response.content)
           response_code = response.status_code # log status code.
           ## log...
           call_id = self.id # get current unique identifier for the call
